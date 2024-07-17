@@ -9,7 +9,7 @@ const movieDetailsSchema = new mongoose.Schema({
   director: { type: String },
   writer: { type: String },
   actors: { type: String },
-  plot: { type: String },
+  plot: { type: String, default: "Once upon a time..." },
   poster: {
     type: String,
     validate: {
