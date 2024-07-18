@@ -1,0 +1,98 @@
+[
+  {
+    "movieIndex": 1,
+    "movieDetails": {
+      "title": "Inception",
+      "runtime": "148 min",
+      "genre": "Action, Adventure, Sci-Fi",
+      "director": "Christopher Nolan",
+      "writer": "Christopher Nolan",
+      "actors": "Leonardo DiCaprio, Joseph Gordon-Levitt, Ellen Page",
+      "plot": "A thief who steals corporate secrets through the use of dream-sharing technology is given the inverse task of planting an idea into the mind of a C.E.O.",
+      "poster": "https://example.com/posters/inception.jpg"
+    },
+    "screeningTimes": [
+      {
+        "index": 1,
+        "date": "2024-07-18T19:30:00Z",
+        "time": "19:30",
+        "visitors": [
+          { "id": "1", "visitor": "Alice" },
+          { "id": "2", "visitor": "Bob" }
+        ],
+        "revenue": 300
+      },
+      {
+        "index": 2,
+        "date": "2024-07-19T21:00:00Z",
+        "time": "21:00",
+        "visitors": [],
+        "revenue": 0
+      }
+    ]
+  },
+  {
+    "movieIndex": 2,
+    "movieDetails": {
+      "title": "The Matrix",
+      "runtime": "136 min",
+      "genre": "Action, Sci-Fi",
+      "director": "Lana Wachowski, Lilly Wachowski",
+      "writer": "Lilly Wachowski, Lana Wachowski",
+      "actors": "Keanu Reeves, Laurence Fishburne, Carrie-Anne Moss",
+      "plot": "A computer hacker learns from mysterious rebels about the true nature of his reality and his role in the war against its controllers.",
+      "poster": "https://example.com/posters/matrix.jpg"
+    },
+    "screeningTimes": [
+      {
+        "index": 1,
+        "date": "2024-07-20T18:00:00Z",
+        "time": "18:00",
+        "visitors": [
+          { "id": "3", "visitor": "Charlie" },
+          { "id": "4", "visitor": "Dave" }
+        ],
+        "revenue": 250
+      },
+      {
+        "index": 2,
+        "date": "2024-07-21T20:00:00Z",
+        "time": "20:00",
+        "visitors": [{ "id": "5", "visitor": "Eve" }],
+        "revenue": 125
+      }
+    ]
+  },
+  {
+    "movieIndex": 3,
+    "movieDetails": {
+      "title": "Interstellar",
+      "runtime": "169 min",
+      "genre": "Adventure, Drama, Sci-Fi",
+      "director": "Christopher Nolan",
+      "writer": "Jonathan Nolan, Christopher Nolan",
+      "actors": "Matthew McConaughey, Anne Hathaway, Jessica Chastain",
+      "plot": "A team of explorers travel through a wormhole in space in an attempt to ensure humanity's survival.",
+      "poster": "https://example.com/posters/interstellar.jpg"
+    },
+    "screeningTimes": [
+      {
+        "index": 1,
+        "date": "2024-07-22T17:00:00Z",
+        "time": "17:00",
+        "visitors": [
+          { "id": "6", "visitor": "Frank" },
+          { "id": "7", "visitor": "Grace" }
+        ],
+        "revenue": 200
+      },
+      {
+        "index": 2,
+        "date": "2024-07-23T19:30:00Z",
+        "time": "19:30",
+        "visitors": [],
+        "revenue": 0
+      }
+    ]
+  }
+]

@@ -63,57 +63,49 @@ const nameValidator = {
     `${props.value} is not valid! Please enter a valid input using only letters, hyphens, apostrophes and spaces.`,
 };
 
-const userSchema = new mongoose.Schema({
-  username: {
-    type: String,
-    required: true,
-    unique: true,
-    trim: true,
-    minlength: [4, "Username: Minlength is 4 characters"],
-    maxlength: [20, "Username: Maxlength is 20 characters"],
-    validate: {
-      validator: (v) => {
-        return validator.matches(v, /^[a-zA-Z0-9]+$/);
-      },
-      message: (props) =>
-        `${props.value} is not valid. Please enter a valid input using only letters (a-z, A-Z) and numbers (0-9).`,
-    },
-  },
-  email: {
-    type: String,
-    required: true,
-    unique: true,
-    trim: true,
-    lowercase: true,
-    validate: {
-      validator: (v) => {
-        return validator.isEmail(v);
-      },
-      message: (props) => `${props.value} is not a valid email!`,
-    },
-  },
-  password: { type: String, required: true, minlength: 6 },
-  firstName: { type: String, validate: nameValidator },
-  lastName: { type: String, validate: nameValidator },
-  profilePicture: {
-    type: String,
-    validate: {
-      validator: (v) => {
-        return /^(https?:\/\/.*\.(?:png|jpg|jpeg|gif))$/.test(v);
-      },
-      message: (props) => {
-        return `${props.value} is not a valid URL!`;
+const userSchema = new mongoose.Schema(
+  {
+    username: {
+      type: String,
+      required: true,
+      unique: true,
+      trim: true,
+      minlength: [4, "Username: Minlength is 4 characters"],
+      maxlength: [20, "Username: Maxlength is 20 characters"],
+      validate: {
+        validator: (v) => {
+          return validator.matches(v, /^[a-zA-Z0-9]+$/);
+        },
+        message: (props) =>
+          `${props.value} is not valid. Please enter a valid input using only letters (a-z, A-Z) and numbers (0-9).`,
       },
     },
-  },
-  phoneNumber: {
-    type: Number,
-    trim: true,
+    email: {
+      type: String,
+      required: true,
+      unique: true,
+      trim: true,
+      lowercase: true,
+      validate: {
+        validator: (v) => {
+          return validator.isEmail(v);
+        },
+        message: (props) => `${props.value} is not a valid email!`,
+      },
+    },
+    password: { type: String, required: true, minlength: 6 },
+    firstName: { type: String, validate: nameValidator },
+    lastName: { type: String, validate: nameValidator },
+    //! Profile picture will be uploaded -> install multer
+    profilePicture: { type: String },
+    phoneNumber: {
+      type: Number,
+    },
     address: { type: addressSchema },
-    createdAt: { type: Date, default: Date.now },
-    updatedAt: { type: Date, default: Date.now },
+    admin: { type: Boolean, default: false },
   },
-});
+  { timestamps: true }
+);
 
 const User = mongoose.model("User", userSchema);
 
