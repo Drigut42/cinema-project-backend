@@ -31,6 +31,8 @@ export const checkToken = async (req, res, next) => {
       }
       // The user data of the user will be saved in 'req.user' for the subsequent routes
       req.user = user;
+      console.log("Token check of", user.username);
+
       next();
     });
   } catch (err) {

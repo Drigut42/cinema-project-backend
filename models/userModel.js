@@ -96,8 +96,10 @@ const userSchema = new mongoose.Schema(
     password: { type: String, required: true, minlength: 6 },
     firstName: { type: String, validate: nameValidator },
     lastName: { type: String, validate: nameValidator },
-    //! Profile picture will be uploaded -> install multer
-    profilePicture: { type: String },
+    profilePicture: {
+      type: String,
+      default: "default-profilePic.png",
+    },
     phoneNumber: {
       type: Number,
     },
