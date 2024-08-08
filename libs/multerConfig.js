@@ -4,9 +4,19 @@ import path from "path";
 
 // Ensure the 'files' directory exists; if not, create it for storing uploaded files
 // fs ensures the directory for file storage exists, even if file data is saved in the database.
-const uploadDir = "private/profilePics";
+// `path.join` is used to safely construct file paths (ensuring correct platform-specific path separators)
+const uploadDir = path.join("private", "profilePics");
+const defaultImagePath = path.join("assets", "default-profilePic.png");
+// Path where the default profile picture should be copied
+const destinationPath = path.join(uploadDir, "default-profilePic.png");
+// Check if the directory exists; if not, create it and any necessary parent directories
 if (!fs.existsSync(uploadDir)) {
-  fs.mkdirSync(uploadDir);
+  fs.mkdirSync(uploadDir, { recursive: true }); // create all directories
+}
+// Check if the default image is in the directory; if not, copy it
+if (!fs.existsSync(destinationPath)) {
+  fs.copyFileSync(defaultImagePath, destinationPath);
+  console.log("Default profile picture copied to upload directory.");
 }
 
 // Multer configuration to define where and how files are stored

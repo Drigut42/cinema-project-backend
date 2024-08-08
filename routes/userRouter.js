@@ -15,7 +15,27 @@ import {
 import { checkAdmin, checkToken } from "../middlewares/checkAuth.js";
 import { methodNotAllowed } from "../middlewares/errorMiddleware.js";
 
+// Imports for profile picture route:
+import {
+  deleteProfilePic,
+  getProfilePic,
+  uploadProfilePic,
+} from "../controllers/userProfilePicController.js";
+// multer
+import upload from "../libs/multerConfig.js";
+
 const userRouter = express.Router();
+
+// Route for registration
+userRouter.route("/register").post(registerOwnProfile).all(methodNotAllowed);
+userRouter
+  .route("/register-admin")
+  .post(checkToken, checkAdmin, registerAdmin)
+  .all(methodNotAllowed);
+
+// Route for login
+// userRouter.route("/login");
+userRouter.route("/login").post(login).all(methodNotAllowed);
 
 // Normal user (OwnProfile) can only create, update and delete their own account.
 // We get the user ID from the token instead of the URL to improve security.
@@ -41,16 +61,15 @@ userRouter
   .delete(checkToken, checkAdmin, deleteUser)
   .all(methodNotAllowed);
 
-// Route for registration
+// PROFILE PICTURE ROUTE
+// Route for handling file uploads at `/profile-pic`.
+// The name attribute in the file input field ("profilePic") must match the name used in the `upload.single("profilePic")` middleware.
 
-userRouter.route("/register").post(registerOwnProfile).all(methodNotAllowed);
 userRouter
-  .route("/register-admin")
-  .post(checkToken, checkAdmin, registerAdmin)
+  .route("/profile-pic")
+  .get(checkToken, getProfilePic)
+  .post(checkToken, upload.single("profilePic"), uploadProfilePic)
+  .delete(checkToken, deleteProfilePic)
   .all(methodNotAllowed);
-
-// Route for login
-// userRouter.route("/login");
-userRouter.route("/login").post(login).all(methodNotAllowed);
 
 export default userRouter;

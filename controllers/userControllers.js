@@ -40,7 +40,12 @@ export const getOwnProfile = async (req, res, next) => {
 const updateAccount = (isAdmin) => {
   return async (req, res, next) => {
     try {
-      const { username, password, email } = req.body;
+      const { username, password, email, profilePicture } = req.body;
+      // Make sure profilePicture is NOT included, if it is include, delete!
+      if (profilePicture) {
+        delete req.body.profilePicture;
+      }
+
       if (username) {
         // if user exists in the database, reject!
         const existingUser = await User.findOne({ username });
@@ -150,7 +155,11 @@ export const deleteOwnProfile = async (req, res, next) => {
 const register = (isAdmin) => {
   return async (req, res, next) => {
     try {
-      const { username, password, email } = req.body;
+      const { username, password, email, profilePicture } = req.body;
+      // Make sure profilePicture is NOT included, if it is include, delete!
+      if (profilePicture) {
+        delete req.body.profilePicture;
+      }
 
       // username, password and email are required
       if (!username || !password || !email) {
